@@ -1,0 +1,26 @@
+I am almost sure that my variables $imP, $regP and $locP cover all possible parameters
+that we used for any instruction in MIPS. So I should be able to reuse these variables
+for all possible instructions. I could try something like hashing out instructions to
+their pattern matching string parameters.
+so something like:
+
+%instructHash{
+	add => '$regP\s*$regP\s*\$regP',
+	lw  => '$regP\s*$locP',
+etc...
+};
+
+I would then replace my $nem if statements to check whether $nem exists and whether
+$param is keyed too $nem in the hashtable. so my code would change to something like:
+
+if ($nem exists in the hashtable){
+	if($param is keyed to $nem){ print "valid" }
+	else print "parameters don't match $nem " }
+}
+else
+print "invalid mnemonic";
+
+I know that I am either missing something, or my code is not set up to make this
+work properly as I have failed at my attempts implement this idea.
+
+
